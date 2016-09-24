@@ -1,0 +1,18 @@
+//
+//  PrefixHeader.pch
+//  menu
+//
+//  Created by 菲旸 on 16/9/6.
+//  Copyright © 2016年 xfy. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+/**
+ *  需全局使用类文件
+ */
+#import "AppManager.h"
+
+
+#endif /* PrefixHeader_pch */

@@ -1,0 +1,21 @@
+PODS:
+  - MBProgressHUD (1.0.0)
+  - MJRefresh (3.1.12)
+  - MobAPI-For-iOS (1.0.6)
+  - MOBFoundation (2.0.10)
+
+DEPENDENCIES:
+  - MBProgressHUD (~> 1.0.0)
+  - MJRefresh (~> 3.1.12)
+  - MobAPI-For-iOS
+  - MOBFoundation
+
+SPEC CHECKSUMS:
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MobAPI-For-iOS: 900a3e83891cf4b8445a5c4dd3d5adf16ff3e9d8
+  MOBFoundation: be1a5556482800c5c3515f8fbd32770a6622bd42
+
+PODFILE CHECKSUM: 8c3d4f404d25300b8ed109c48e9c865bcf608a9d
+
+COCOAPODS: 1.0.1
