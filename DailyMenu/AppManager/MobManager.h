@@ -12,16 +12,16 @@
 /**
  *  获取信息成功
  *
- *  @param obj 服务器返回结果
+ *  @param obj 服务器返回结果 identifer 请求标示
  */
-- (void)getMobDataSuucess:(id)obj;
+- (void)getMobDataSuucess:(id)obj withIdentifer:(int)identifer;
 
 /**
  *  获取信息失败
  *
  *  @param errorMsg 错误信息
  */
-- (void)getMobDataFailed:(NSString *)errorMsg;
+- (void)getMobDataFailed:(NSString *)errorMsg withIdentifer:(int)identifer;
 @end
 
 
@@ -32,9 +32,13 @@
 /**
  *  获取菜单分类
  */
-- (void)getMenuClass;
+- (void)getMenuClass:(int)identifer;
 /**
  *  获取菜谱详细信息
  */
-- (void)getCookInfoMid:(NSString *)mid;
+- (void)getCookInfoMid:(NSString *)mid withIdentifer:(int)identifer;
+/**
+ *  获取菜谱分类列表
+ */
+- (void)getMenuClassList:(NSString *)listId withIdentifer:(int)identifer;
 @end

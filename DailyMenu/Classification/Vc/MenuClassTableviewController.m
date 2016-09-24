@@ -13,7 +13,14 @@
 @end
 
 @implementation MenuClassTableviewController
-
+- (id)initWithData:(NSMutableArray *)dataArray
+{
+    if (self = [super init]) {
+        
+        
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 

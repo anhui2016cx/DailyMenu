@@ -8,6 +8,7 @@
 
 #import "ClassificationViewController.h"
 #import "MenuSearchViewController.h"
+#import "MenuClassTableviewController.h"
 
 #import "MenuClassTableViewCell.h"
 
@@ -81,7 +82,7 @@
     //开启线程拉取数据
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         mobManager.delegate = self;
-        [mobManager getMenuClass];
+        [mobManager getMenuClass:0];
     });
 
 }
@@ -144,7 +145,14 @@
 
 - (void)selectChildsMenu:(UIButton *)button
 {
-    NSLog(@"%ld",(long)button.tag);
+    MenuClassModel * model = [self.classArray objectAtIndex:currentClassIndex];
+    MenuClassChildsModel *chilsModel = [model.childsArray objectAtIndex:button.tag];
+    //开启线程拉取数据
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        mobManager.delegate = self;
+        [mobManager getMenuClassList:chilsModel.ctgId withIdentifer:1];
+    });
+
 }
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -184,6 +192,7 @@
     classCell.cell_w = CGRectGetWidth(classTableView.frame);
     classCell.cell_height = [self tableView:tableView heightForRowAtIndexPath:indexPath];
     [classCell drawCell:model withCurrentCell:currentCell];
+    
     return classCell;
 }
 
@@ -196,17 +205,24 @@
 }
 
 #pragma mark MobManagerDelegate
-- (void)getMobDataSuucess:(id)obj
+- (void)getMobDataSuucess:(id)obj withIdentifer:(int)identifer
 {
     if ([obj isKindOfClass:[NSMutableArray class]]) {
-        self.classArray = obj;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [classTableView reloadData];
-            [self initChildsView];
-        });
+        if (identifer == 0) {
+            self.classArray = obj;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [classTableView reloadData];
+                [self initChildsView];
+            });
+        } else if (identifer == 1) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                MenuClassTableviewController *vc = [[MenuClassTableviewController alloc] initWithData:obj];
+                [self.navigationController pushViewController:vc animated:YES];
+            });
+        }
     }
 }
-- (void)getMobDataFailed:(NSString *)errorMsg
+- (void)getMobDataFailed:(NSString *)errorMsg withIdentifer:(int)identifer
 {
     
 }

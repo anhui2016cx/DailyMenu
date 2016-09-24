@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface MenuClassTableviewController : BaseViewController
-
+- (id)initWithData:(NSMutableArray *)dataArray;
 @end

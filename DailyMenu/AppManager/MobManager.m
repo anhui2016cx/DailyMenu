@@ -11,10 +11,22 @@
 
 #import "MenuClassModel.h"
 #import "CookInfoModel.h"
-
+@interface MobManager()
+{
+    int page;
+    BOOL more;
+}
+@end
 @implementation MobManager
-
-- (void)getMenuClass
+- (id)init
+{
+    if (self = [super init]) {
+        page = 1;
+        more = YES;
+    }
+    return self;
+}
+- (void)getMenuClass:(int)identifer
 {
     [MobAPI sendRequest:[MOBACookRequest categoryRequest]
                onResult:^(MOBAResponse *response) {
@@ -37,14 +49,14 @@
                            
                        }
                        //返回数据
-                       if (self.delegate && [self.delegate respondsToSelector:@selector(getMobDataSuucess:)]) {
-                           [self.delegate getMobDataSuucess:dataArray];
+                       if (self.delegate && [self.delegate respondsToSelector:@selector(getMobDataSuucess: withIdentifer:)]) {
+                           [self.delegate getMobDataSuucess:dataArray withIdentifer:identifer];
                        }
                        
                    } else {
                        
-                       if (self.delegate && [self.delegate respondsToSelector:@selector(getMobDataFailed:)]) {
-                           [self.delegate getMobDataFailed:@"数据加载异常"];
+                       if (self.delegate && [self.delegate respondsToSelector:@selector(getMobDataFailed: withIdentifer:)]) {
+                           [self.delegate getMobDataFailed:@"数据加载异常" withIdentifer:identifer];
                        }
                        
                    }
@@ -52,7 +64,7 @@
                }];
 }
 
-- (void)getCookInfoMid:(NSString *)mid{
+- (void)getCookInfoMid:(NSString *)mid withIdentifer:(int)identifer{
     [MobAPI sendRequest:[MOBACookRequest infoDetailRequestById:mid]
                onResult:^(MOBAResponse *response) {
         
@@ -64,17 +76,66 @@
                        
                        CookInfoModel *cookInfoModel = [[CookInfoModel alloc] initWithCtgIds:[classDic objectForKey:@"ctgIds"] CtgTitles:[classDic objectForKey:@"ctgTitles"] MenuId:[classDic objectForKey:@"menuId"] Name:[classDic objectForKey:@"name"] Recipe:[classDic objectForKey:@"recipe"] Thumbnail:[classDic objectForKey:@"thumbnail"]];
                        
-                       if(self.delegate &&[self.delegate respondsToSelector:@selector(getMobDataSuucess:)]){
-                           [self.delegate getMobDataSuucess:cookInfoModel];
+                       if(self.delegate &&[self.delegate respondsToSelector:@selector(getMobDataSuucess: withIdentifer:)]){
+                           [self.delegate getMobDataSuucess:cookInfoModel withIdentifer:identifer];
                        }
-                   }else{
-                       if(self.delegate &&[self.delegate respondsToSelector:@selector(getMobDataFailed:)]){
-                           [self.delegate getMobDataFailed:@"数据加载异常"];
+                       
+                   } else {
+                       
+                       if(self.delegate &&[self.delegate respondsToSelector:@selector(getMobDataFailed: withIdentifer:)]){
+                           [self.delegate getMobDataFailed:@"数据加载异常" withIdentifer:identifer];
                        }
+                       
                    }
                    
                    
     }];
 }
 
+- (void)getMenuClassList:(NSString *)listId withIdentifer:(int)identifer
+{
+    
+    static int pageSize = 20;
+    [MobAPI sendRequest:[MOBACookRequest searchMenuRequestByCid:listId
+                                                           name:nil
+                                                           page:page
+                                                           size:pageSize] onResult:^(MOBAResponse *response) {
+        
+        if (response.responder) {
+            
+            NSArray *listArray = [response.responder objectForKey:@"list"];
+            if (listArray.count < pageSize) {//说明没有下一页了
+                more = NO;
+                page = 1;
+            } else {
+                more = YES;
+                page ++;
+            }
+            //解析数据
+            NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+            for (NSDictionary *classDic in listArray) {
+                
+              CookInfoModel *cookInfoModel = [[CookInfoModel alloc] initWithCtgIds:[classDic objectForKey:@"ctgIds"] CtgTitles:[classDic objectForKey:@"ctgTitles"] MenuId:[classDic objectForKey:@"menuId"] Name:[classDic objectForKey:@"name"] Recipe:[classDic objectForKey:@"recipe"] Thumbnail:[classDic objectForKey:@"thumbnail"]];
+                
+                [dataArray addObject:cookInfoModel];
+            }
+            
+            //返回数据
+            if (self.delegate && [self.delegate respondsToSelector:@selector(getMobDataSuucess: withIdentifer:)]) {
+                [self.delegate getMobDataSuucess:dataArray withIdentifer:identifer];
+            }
+
+        } else {
+            
+            if(self.delegate &&[self.delegate respondsToSelector:@selector(getMobDataFailed: withIdentifer:)]){
+                [self.delegate getMobDataFailed:@"数据加载异常" withIdentifer:identifer];
+            }
+        
+        }
+        
+     
+    }];
+    
+    
+}
 @end
