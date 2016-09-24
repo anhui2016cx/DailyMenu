@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface DynamicViewController : BaseViewController
+@interface DynamicViewController : UIViewController
 
 @end
