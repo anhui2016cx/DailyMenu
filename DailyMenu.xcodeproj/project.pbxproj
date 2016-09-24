@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6C4880AF211C640E7DC8C9D4 /* libPods-DailyMenu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 995A6376E4865203FA1CA045 /* libPods-DailyMenu.a */; };
+		8D62F05D1D96537B00835CC5 /* CookInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D62F05A1D96537B00835CC5 /* CookInfoModel.m */; };
+		8D62F05E1D96537B00835CC5 /* CookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D62F05C1D96537B00835CC5 /* CookModel.m */; };
+		8D62F0621D96540300835CC5 /* CookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D62F0611D96540300835CC5 /* CookDetailViewController.m */; };
+		8D62F0651D965D2C00835CC5 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D62F0631D965D2C00835CC5 /* UINavigationBar+Awesome.m */; };
 		D7635C5B1D942B26004DC6E7 /* MenuClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7635C5A1D942B26004DC6E7 /* MenuClassModel.m */; };
 		D77871D31D941C78002BE0EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D77871D21D941C78002BE0EA /* main.m */; };
 		D77871DE1D941C78002BE0EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D77871DD1D941C78002BE0EA /* Assets.xcassets */; };
@@ -28,6 +32,14 @@
 
 /* Begin PBXFileReference section */
 		861012C5C4B3E134EB41A5EF /* Pods-DailyMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyMenu/Pods-DailyMenu.release.xcconfig"; sourceTree = "<group>"; };
+		8D62F0591D96537B00835CC5 /* CookInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookInfoModel.h; sourceTree = "<group>"; };
+		8D62F05A1D96537B00835CC5 /* CookInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookInfoModel.m; sourceTree = "<group>"; };
+		8D62F05B1D96537B00835CC5 /* CookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookModel.h; sourceTree = "<group>"; };
+		8D62F05C1D96537B00835CC5 /* CookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookModel.m; sourceTree = "<group>"; };
+		8D62F0601D96540300835CC5 /* CookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookDetailViewController.h; sourceTree = "<group>"; };
+		8D62F0611D96540300835CC5 /* CookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookDetailViewController.m; sourceTree = "<group>"; };
+		8D62F0631D965D2C00835CC5 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
+		8D62F0641D965D2C00835CC5 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		995A6376E4865203FA1CA045 /* libPods-DailyMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DailyMenu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7635C591D942B26004DC6E7 /* MenuClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuClassModel.h; sourceTree = "<group>"; };
 		D7635C5A1D942B26004DC6E7 /* MenuClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuClassModel.m; sourceTree = "<group>"; };
@@ -85,6 +97,35 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8D62F0571D96530B00835CC5 /* PublicViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8D62F05F1D9653C400835CC5 /* Vc */,
+				8D62F0581D96537B00835CC5 /* Model */,
+			);
+			path = PublicViewController;
+			sourceTree = "<group>";
+		};
+		8D62F0581D96537B00835CC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D62F0591D96537B00835CC5 /* CookInfoModel.h */,
+				8D62F05A1D96537B00835CC5 /* CookInfoModel.m */,
+				8D62F05B1D96537B00835CC5 /* CookModel.h */,
+				8D62F05C1D96537B00835CC5 /* CookModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8D62F05F1D9653C400835CC5 /* Vc */ = {
+			isa = PBXGroup;
+			children = (
+				8D62F0601D96540300835CC5 /* CookDetailViewController.h */,
+				8D62F0611D96540300835CC5 /* CookDetailViewController.m */,
+			);
+			path = Vc;
+			sourceTree = "<group>";
+		};
 		968E5BFB0A47972962D15544 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +166,7 @@
 		D77871D01D941C78002BE0EA /* DailyMenu */ = {
 			isa = PBXGroup;
 			children = (
+				8D62F0571D96530B00835CC5 /* PublicViewController */,
 				D77871EF1D941D25002BE0EA /* TabBarController */,
 				D77871EE1D941D16002BE0EA /* AppBaseSet */,
 				D77871ED1D941D0E002BE0EA /* Home */,
@@ -152,6 +194,8 @@
 		D77871E81D941CB9002BE0EA /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				8D62F0631D965D2C00835CC5 /* UINavigationBar+Awesome.m */,
+				8D62F0641D965D2C00835CC5 /* UINavigationBar+Awesome.h */,
 				D77871FB1D941FB9002BE0EA /* PrefixHeader.pch */,
 			);
 			path = Tool;
@@ -416,6 +460,7 @@
 				D77871D31D941C78002BE0EA /* main.m in Sources */,
 				D77872061D941FC3002BE0EA /* BaseViewController.m in Sources */,
 				D77872071D941FC3002BE0EA /* MobManager.m in Sources */,
+				8D62F05E1D96537B00835CC5 /* CookModel.m in Sources */,
 				D7635C5B1D942B26004DC6E7 /* MenuClassModel.m in Sources */,
 				D79295101D9568720017B175 /* MenuClassChildsModel.m in Sources */,
 				D79295131D957D360017B175 /* MenuClassTableViewCell.m in Sources */,
@@ -425,7 +470,10 @@
 				D77872131D941FE5002BE0EA /* HomeViewController.m in Sources */,
 				D77872051D941FC3002BE0EA /* AppNavigationController.m in Sources */,
 				D77872191D941FF5002BE0EA /* AppTabBarController.m in Sources */,
+				8D62F0651D965D2C00835CC5 /* UINavigationBar+Awesome.m in Sources */,
+				8D62F0621D96540300835CC5 /* CookDetailViewController.m in Sources */,
 				D77872041D941FC3002BE0EA /* AppManager.m in Sources */,
+				8D62F05D1D96537B00835CC5 /* CookInfoModel.m in Sources */,
 				D778720D1D941FD5002BE0EA /* DynamicViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,7 +580,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_PREFIX_HEADER = "";
+				GCC_PREFIX_HEADER = /Users/caozhen/Documents/WorkSpace/DailyMenu/DailyMenu/Tool/PrefixHeader.pch;
 				INFOPLIST_FILE = DailyMenu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -547,7 +595,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_PREFIX_HEADER = "";
+				GCC_PREFIX_HEADER = /Users/caozhen/Documents/WorkSpace/DailyMenu/DailyMenu/Tool/PrefixHeader.pch;
 				INFOPLIST_FILE = DailyMenu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

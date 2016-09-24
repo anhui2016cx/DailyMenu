@@ -33,4 +33,8 @@
  *  获取菜单分类
  */
 - (void)getMenuClass;
+/**
+ *  获取菜谱详细信息
+ */
+- (void)getCookInfoMid:(NSString *)mid;
 @end

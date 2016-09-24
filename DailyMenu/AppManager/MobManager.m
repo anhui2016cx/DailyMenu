@@ -10,6 +10,8 @@
 #import <MobAPI/MobAPI.h>
 
 #import "MenuClassModel.h"
+#import "CookInfoModel.h"
+
 @implementation MobManager
 
 - (void)getMenuClass
@@ -49,4 +51,30 @@
                    
                }];
 }
+
+- (void)getCookInfoMid:(NSString *)mid{
+    [MobAPI sendRequest:[MOBACookRequest infoDetailRequestById:mid]
+               onResult:^(MOBAResponse *response) {
+        
+                   NSString *result = [NSString stringWithFormat:@"%@",[response.responder objectForKey:@"msg"]];
+                   
+                   if(result && [result isEqualToString:@"success"]){
+                       
+                       NSDictionary *classDic = [response.responder objectForKey:@"result"];
+                       
+                       CookInfoModel *cookInfoModel = [[CookInfoModel alloc] initWithCtgIds:[classDic objectForKey:@"ctgIds"] CtgTitles:[classDic objectForKey:@"ctgTitles"] MenuId:[classDic objectForKey:@"menuId"] Name:[classDic objectForKey:@"name"] Recipe:[classDic objectForKey:@"recipe"] Thumbnail:[classDic objectForKey:@"thumbnail"]];
+                       
+                       if(self.delegate &&[self.delegate respondsToSelector:@selector(getMobDataSuucess:)]){
+                           [self.delegate getMobDataSuucess:cookInfoModel];
+                       }
+                   }else{
+                       if(self.delegate &&[self.delegate respondsToSelector:@selector(getMobDataFailed:)]){
+                           [self.delegate getMobDataFailed:@"数据加载异常"];
+                       }
+                   }
+                   
+                   
+    }];
+}
+
 @end

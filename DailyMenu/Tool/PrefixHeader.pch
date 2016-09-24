@@ -13,6 +13,7 @@
  *  需全局使用类文件
  */
 #import "AppManager.h"
+#import "MobManager.h"
 
 
 #endif /* PrefixHeader_pch */

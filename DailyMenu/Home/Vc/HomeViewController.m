@@ -7,19 +7,41 @@
 //
 
 #import "HomeViewController.h"
+#import "CookDetailViewController.h"
+
 
 @interface HomeViewController ()
-
+{
+    MobManager *mobManager;
+}
 @end
 
 @implementation HomeViewController
 
+-(instancetype)init{
+    if([super init]){
+        mobManager = [[MobManager alloc] init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIButton *cookButtuon = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    cookButtuon.backgroundColor = [UIColor greenColor];
+    cookButtuon.center = self.view.center;
+    [cookButtuon addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:cookButtuon];
+
     // Do any additional setup after loading the view.
 }
 
+- (void)click:(UIButton *)sender{
+    CookDetailViewController *cookVC = [[CookDetailViewController alloc] init];
+    cookVC.mid = @"00100010070000017731";
+    [self.navigationController pushViewController:cookVC animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
