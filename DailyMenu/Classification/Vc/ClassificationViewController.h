@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface ClassificationViewController : BaseViewController
+@interface ClassificationViewController : UIViewController
 
 @end

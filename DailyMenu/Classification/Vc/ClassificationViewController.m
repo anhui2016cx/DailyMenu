@@ -7,13 +7,14 @@
 //
 
 #import "ClassificationViewController.h"
+#import "MenuSearchViewController.h"
 
 #import "MenuClassTableViewCell.h"
 
 #import "MobManager.h"
 #import "MenuClassModel.h"
 #import "MenuClassChildsModel.h"
-@interface ClassificationViewController ()<UITableViewDelegate,UITableViewDataSource,MobManagerDelegate>
+@interface ClassificationViewController ()<UITableViewDelegate,UITableViewDataSource,MobManagerDelegate,UISearchBarDelegate>
 {
     int currentClassIndex;//当前选择分类
     
@@ -49,17 +50,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"TabBarBackGroundImage.png"] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.barTintColor = [UIColor orangeColor];
+    [self.navigationItem setTitle:@"分类"];
     //添加搜索条
     float menuSearchBar_height = 40.0f;
     UISearchBar *menuSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame), CGRectGetWidth(self.view.frame), menuSearchBar_height)];
+    menuSearchBar.searchBarStyle = UISearchBarStyleMinimal;
     menuSearchBar.placeholder = @"菜谱";
+    menuSearchBar.delegate= self;
     [self.view addSubview:menuSearchBar];
     
     //添加分类菜单列表
     classTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(menuSearchBar.frame), CGRectGetWidth(self.view.frame) / 5.0, CGRectGetHeight(self.view.frame) - CGRectGetMaxY(menuSearchBar.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame))];
     classTableView.delegate = self;
     classTableView.dataSource = self;
+    classTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:classTableView];
     [self getData];
 }
@@ -101,14 +106,14 @@
     int childsIndex = 0;
     for (MenuClassChildsModel *s in model.childsArray) {
         UIButton *childsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        childsButton.layer.cornerRadius = 5.0;
+        childsButton.layer.cornerRadius = 10.0;
         childsButton.layer.masksToBounds = YES;
         childsButton.backgroundColor = [UIColor colorWithRed:246/255.0 green:246/255.0 blue:246/255.0 alpha:1];
         childsButton.tag = childsIndex;
-        float topMargin = 10.0;
-        float margin = 10.0;
-        float font = 14.0;
-        float button_margin = 10.0;
+        float topMargin = 15.0;
+        float margin = 20.0;
+        float font = 15.0;
+        float button_margin = 15.0;
         CGSize titleSize = [s.name sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]}];
         
         float x = margin;
@@ -180,6 +185,14 @@
     classCell.cell_height = [self tableView:tableView heightForRowAtIndexPath:indexPath];
     [classCell drawCell:model withCurrentCell:currentCell];
     return classCell;
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    
+    MenuSearchViewController *vc = [[MenuSearchViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:NO];
+    return NO;
 }
 
 #pragma mark MobManagerDelegate
