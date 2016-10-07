@@ -60,7 +60,7 @@
     
     dispatch_async(dispatch_get_global_queue(0, 1), ^{
         mobManager.delegate = self;
-        [mobManager getCookInfoMid:self.mid];
+        [mobManager getCookInfoMid:self.mid withIdentifer:0];
     });
     
 }
